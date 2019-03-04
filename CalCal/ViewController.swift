@@ -22,8 +22,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func buttonClick(_ sender: UIButton) {
-        
+    @IBAction func numPressed(_ sender: UIButton) {
+        updateMainLabel(newNum: (sender.titleLabel?.text)!)
+    }
+    
+    func updateMainLabel(newNum: String) {
+        if displayLabel.text == "0" {
+            displayLabel.text = String(newNum)
+        } else {
+            displayLabel.text?.append(String(newNum))
+        }
     }
     
     
