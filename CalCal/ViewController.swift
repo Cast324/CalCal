@@ -26,6 +26,31 @@ class ViewController: UIViewController {
         updateMainLabel(newNum: (sender.titleLabel?.text)!)
     }
     
+    @IBAction func functionPressed(_ sender: UIButton) {
+        switch sender.titleLabel?.text {
+        case "AC":
+            displayLabel.text = "0"
+        case "+/-":
+            displayLabel.text = "+/-"
+        case "%":
+            displayLabel.text = "%"
+        case "÷":
+            displayLabel.text = "+"
+        case "X":
+            displayLabel.text = "X"
+        case "-":
+            displayLabel.text = "-"
+        case "+":
+            displayLabel.text = "+"
+        case "=":
+            displayLabel.text = "="
+        case "<-":
+            displayLabel.text = "BackSpace"
+        default:
+            print("How did you do that?")
+        }
+    }
+    
     func updateMainLabel(newNum: String) {
         if displayLabel.text == "0" {
             displayLabel.text = String(newNum)
