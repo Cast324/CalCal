@@ -39,21 +39,29 @@ class ViewController: UIViewController {
             displayLabel.text = "0"
             calcModel.clearOperators()
         case "÷":
-            sender.backgroundColor = UIColor.gray
-            calcModel.operand1 = Double(displayLabel.text!)!
-            calcModel.mathOperation = .divide
+            if calcModel.mathOperation == .none {
+                sender.backgroundColor = UIColor.gray
+                calcModel.operand1 = Double(displayLabel.text!)!
+                calcModel.mathOperation = .divide
+            }
         case "X":
-            sender.backgroundColor = UIColor.gray
-            calcModel.operand1 = Double(displayLabel.text!)!
-            calcModel.mathOperation = .multiply
+            if calcModel.mathOperation == .none {
+                sender.backgroundColor = UIColor.gray
+                calcModel.operand1 = Double(displayLabel.text!)!
+                calcModel.mathOperation = .multiply
+            }
         case "-":
-            sender.backgroundColor = UIColor.gray
-            calcModel.operand1 = Double(displayLabel.text!)!
-            calcModel.mathOperation = .minus
+            if calcModel.mathOperation == .none {
+                sender.backgroundColor = UIColor.gray
+                calcModel.operand1 = Double(displayLabel.text!)!
+                calcModel.mathOperation = .minus
+            }
         case "+":
-            sender.backgroundColor = UIColor.gray
-            calcModel.operand1 = Double(displayLabel.text!)!
-            calcModel.mathOperation = .plus
+            if calcModel.mathOperation == .none {
+                sender.backgroundColor = UIColor.gray
+                calcModel.operand1 = Double(displayLabel.text!)!
+                calcModel.mathOperation = .plus
+            }
         case "=":
             if calcModel.mathOperation != .none {
                 calcModel.operand2 = Double(displayLabel.text!)!
