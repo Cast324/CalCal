@@ -44,18 +44,10 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soy-N3-zBM">
                                                 <rect key="frame" x="94" y="0.0" width="93.5" height="114.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <state key="normal" title="+/-"/>
-                                                <connections>
-                                                    <action selector="functionPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S0Q-2X-M0x"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYs-8d-Frn">
                                                 <rect key="frame" x="187.5" y="0.0" width="94" height="114.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <state key="normal" title="%"/>
-                                                <connections>
-                                                    <action selector="functionPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ffN-w7-W4F"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mr-iL-q1s">
                                                 <rect key="frame" x="281.5" y="0.0" width="93.5" height="114.5"/>

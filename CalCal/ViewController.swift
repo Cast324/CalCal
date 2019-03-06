@@ -17,16 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
-    enum operators {
-        case plus
-        case minus
-        case multiply
-        case divide
-        case none
-    }
-    
-    var nextOperator:operators = .none
-    var operatorToPerform:operators = .none
+    let calcModel = CalcModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,58 +37,67 @@ class ViewController: UIViewController {
         switch sender.titleLabel?.text {
         case "AC":
             displayLabel.text = "0"
-        case "+/-":
-            displayLabel.text = "+/-"
-        case "%":
-            displayLabel.text = "%"
+            calcModel.clearOperators()
         case "÷":
-            nextOperator = .divide
             sender.backgroundColor = UIColor.gray
+            calcModel.operand1 = Double(displayLabel.text!)!
+            calcModel.mathOperation = .divide
         case "X":
-            nextOperator = .multiply
             sender.backgroundColor = UIColor.gray
+            calcModel.operand1 = Double(displayLabel.text!)!
+            calcModel.mathOperation = .multiply
         case "-":
-            nextOperator = .minus
             sender.backgroundColor = UIColor.gray
+            calcModel.operand1 = Double(displayLabel.text!)!
+            calcModel.mathOperation = .minus
         case "+":
-            nextOperator = .plus
             sender.backgroundColor = UIColor.gray
+            calcModel.operand1 = Double(displayLabel.text!)!
+            calcModel.mathOperation = .plus
         case "=":
-            displayLabel.text = "="
+            if calcModel.mathOperation != .none {
+                calcModel.operand2 = Double(displayLabel.text!)!
+                updateMainLabel(newNum: calcModel.performOperation())
+                calcModel.clearOperators()
+            }
         case "<-":
-            displayLabel.text = "BackSpace"
+            if displayLabel.text != "0" {
+                if displayLabel.text?.count == 1 {
+                    displayLabel.text = "0"
+                } else {
+                    displayLabel.text?.removeLast()
+                }
+            }
         default:
             print("How did you do that? Error in Fuctions")
         }
     }
     
     func updateMainLabel(newNum: String) {
-        if displayLabel.text == "0"{
+        if calcModel.operand1 != nil && calcModel.operand2 != nil {
             displayLabel.text = newNum
-        } else if nextOperator == .none {
+        }else if displayLabel.text == "0" && calcModel.operand1 == nil {
+            displayLabel.text = newNum
+        } else if displayLabel.text != "0" && calcModel.operand1 == nil {
             displayLabel.text?.append(newNum)
         } else {
-            displayLabel.text = newNum
-            switch nextOperator {
-            case .plus:
-                plusButton.backgroundColor = UIColor.white
-                nextOperator = .none
-                operatorToPerform = .plus
-            case .divide:
-                divideButton.backgroundColor = UIColor.white
-                nextOperator = .none
-                operatorToPerform = .divide
-            case .minus:
-                minusButton.backgroundColor = UIColor.white
-                nextOperator = .none
-                operatorToPerform = .minus
-            case .multiply:
-                multiplyButton.backgroundColor = UIColor.white
-                nextOperator = .none
-                operatorToPerform = .multiply
-            default:
-                print("Error When Update Main Label")
-                
+            if Double(displayLabel.text!) == calcModel.operand1 {
+                displayLabel.text = newNum
+                switch calcModel.mathOperation {
+                case .plus:
+                    plusButton.backgroundColor = UIColor.white
+                case .divide:
+                    divideButton.backgroundColor = UIColor.white
+                case .minus:
+                    minusButton.backgroundColor = UIColor.white
+                case .multiply:
+                    multiplyButton.backgroundColor = UIColor.white
+                default:
+                    print("Error When Update Main Label")
+                    
+                }
+            } else {
+                displayLabel.text?.append(newNum)
             }
         }
     }
